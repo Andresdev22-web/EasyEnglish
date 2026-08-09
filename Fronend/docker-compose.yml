@@ -11,6 +11,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.easyenglish.rule=Host(`${DOMAIN}`)"
       - "traefik.http.routers.easyenglish.entrypoints=${ENTRYPOINT}"
+      # Comentar la linea de abajo si estas en local y descomentarla si estas en produccion
       - "traefik.http.routers.easyenglish.tls.certresolver=${CERTRESOLVER}"
       - "traefik.http.services.easyenglish.loadbalancer.server.port=80"
 

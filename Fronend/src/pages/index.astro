@@ -1,11 +1,39 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '../layouts/Layout.astro'
+
+import Seccion from '../components/Seccion.astro';
+import TituloPrincipal from '../components/TituloPrincipal.astro';
+import TituloSecundario from '../components/TituloSecundario.astro';
+import ParrafoPrincipal from '../components/ParrafoPrincipal.astro';
+import ParrafoDestacado from '../components/ParrafoDestacado.astro';
 ---
 
 <Layout>
-	<Welcome />
+	<body class="bg-slate-950 text-slate-100 min-h-screen p-4 md:p-10 max-w-4xl mx-auto">
+
+    <!-- SECCIÓN 1: LECCIÓN PRINCIPAL -->
+    <Seccion>
+      <TituloPrincipal>
+        Easy English: Lección 1
+      </TituloPrincipal>
+
+      <ParrafoPrincipal>
+        Bienvenido a la primera lección. Hoy aprenderemos a estructurar oraciones sencillas usando el tiempo presente en inglés.
+      </ParrafoPrincipal>
+
+      <TituloSecundario>
+        Regla Esencial
+      </TituloSecundario>
+
+      <ParrafoPrincipal>
+        Recuerda que los pronombres en tercera persona (He, She, It) agregan una "s" al final del verbo principal en presente simple.
+      </ParrafoPrincipal>
+
+      <ParrafoDestacado>
+        <strong>Tip de estudio:</strong> Practica estas oraciones en voz alta antes de pasar al módulo de ejercicios.
+      </ParrafoDestacado>
+    </Seccion>
+
+  </body>
 </Layout>
