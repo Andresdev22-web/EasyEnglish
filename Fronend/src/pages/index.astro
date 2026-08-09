@@ -1,39 +1,36 @@
 ---
-
-import Layout from '../layouts/Layout.astro'
+import Layout from '../layouts/Layout.astro';
 
 import Seccion from '../components/Seccion.astro';
-import TituloPrincipal from '../components/TituloPrincipal.astro';
-import TituloSecundario from '../components/TituloSecundario.astro';
-import ParrafoPrincipal from '../components/ParrafoPrincipal.astro';
-import ParrafoDestacado from '../components/ParrafoDestacado.astro';
+import Titulo from '../components/Titulo.astro';
+import Parrafo from '../components/Parrafo.astro';
 ---
 
-<Layout>
-	<body class="bg-slate-950 text-slate-100 min-h-screen p-4 md:p-10 max-w-4xl mx-auto">
+<Layout title="Easy English - Lección 1">
+  
+  <Seccion>
+    <!-- Título H1 pasando la prop nivel="h1" -->
+    <Titulo nivel="h1">
+      Easy English: Lección 1
+    </Titulo>
 
-    <!-- SECCIÓN 1: LECCIÓN PRINCIPAL -->
-    <Seccion>
-      <TituloPrincipal>
-        Easy English: Lección 1
-      </TituloPrincipal>
+    <Parrafo>
+      Bienvenido a la primera lección. Hoy aprenderemos a estructurar oraciones sencillas usando el tiempo presente en inglés.
+    </Parrafo>
 
-      <ParrafoPrincipal>
-        Bienvenido a la primera lección. Hoy aprenderemos a estructurar oraciones sencillas usando el tiempo presente en inglés.
-      </ParrafoPrincipal>
+    <!-- Título H2 (por defecto) -->
+    <Titulo>
+      Regla Esencial
+    </Titulo>
 
-      <TituloSecundario>
-        Regla Esencial
-      </TituloSecundario>
+    <Parrafo>
+      Recuerda que los pronombres en tercera persona (He, She, It) agregan una "s" al final del verbo principal en presente simple.
+    </Parrafo>
 
-      <ParrafoPrincipal>
-        Recuerda que los pronombres en tercera persona (He, She, It) agregan una "s" al final del verbo principal en presente simple.
-      </ParrafoPrincipal>
+    <!-- Párrafo destacado pasando la prop destacado -->
+    <Parrafo destacado={true}>
+      <strong>Tip de estudio:</strong> Practica estas oraciones en voz alta antes de pasar al módulo de ejercicios.
+    </Parrafo>
+  </Seccion>
 
-      <ParrafoDestacado>
-        <strong>Tip de estudio:</strong> Practica estas oraciones en voz alta antes de pasar al módulo de ejercicios.
-      </ParrafoDestacado>
-    </Seccion>
-
-  </body>
 </Layout>

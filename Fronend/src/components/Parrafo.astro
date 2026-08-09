@@ -1,0 +1,15 @@
+---
+const { destacado = false } = Astro.props;
+---
+
+{
+  destacado ? (
+    <div class="bg-bg-elevated border-l-4 border-primary p-4 rounded-r-xl my-4 text-text-main text-sm md:text-base leading-relaxed transition-colors">
+      <slot />
+    </div>
+  ) : (
+    <p class="font-body text-text-muted text-base md:text-lg leading-relaxed my-3 transition-colors">
+      <slot />
+    </p>
+  )
+}
