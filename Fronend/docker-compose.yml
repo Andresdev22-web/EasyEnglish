@@ -1,3 +1,4 @@
+name: easyenglish-frontend
 services:
   frontend:
     build: .
@@ -9,7 +10,7 @@ services:
       
       # Regla para desarrollo local (puedes cambiarlo a tu dominio en VPS)
       # Ejemplo: "Host(`easyenglish.localhost`)" o "Host(`tu-dominio.com`)"
-      - "traefik.http.routers.easyenglish.rule=Host(`localhost`)"
+      - "traefik.http.routers.easyenglish.rule=Host(`${DOMAIN}`)"
       
       # Definir el entrypointd
       - "traefik.http.routers.easyenglish.entrypoints=web"
