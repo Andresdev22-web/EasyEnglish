@@ -1,0 +1,30 @@
+services:
+  frontend:
+    build: .
+    container_name: easyenglish-frontend
+    restart: unless-stopped
+    labels:
+      # Activar Traefik para este contenedor
+      - "traefik.enable=true"
+      
+      # Regla para desarrollo local (puedes cambiarlo a tu dominio en VPS)
+      # Ejemplo: "Host(`easyenglish.localhost`)" o "Host(`tu-dominio.com`)"
+      - "traefik.http.routers.easyenglish.rule=Host(`localhost`)"
+      
+      # Definir el entrypointd
+      - "traefik.http.routers.easyenglish.entrypoints=web"
+      
+      # Puerto interno del contenedor (Nginx corre en el 80)
+      - "traefik.http.services.easyenglish.loadbalancer.server.port=80"
+
+      # --- DESCOMENTAR EN VPS (Para HTTPS con Let's Encrypt) ---
+      # - "traefik.http.routers.easyenglish.entrypoints=websecure"
+      # - "traefik.http.routers.easyenglish.tls.certresolver=myresolver"
+
+    networks:
+      - web
+
+networks:
+  # Usa la red externa que definiste en tu docker-compose de Traefik
+  web:
+    external: true
