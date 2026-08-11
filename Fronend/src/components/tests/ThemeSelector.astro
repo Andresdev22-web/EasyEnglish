@@ -3,12 +3,12 @@
 ---
 
 <div class="relative inline-block text-left" id="theme-selector-wrapper">
-  <!-- Botón selector de tema -->
+  <!-- Botón selector de tema sin bordes duros -->
   <button 
     id="theme-btn"
     type="button"
     title="Cambiar color de la web"
-    class="flex items-center justify-center p-2 rounded-lg bg-[var(--bg-surface-hover)] border border-[var(--border-color)] text-[var(--text-primary)] hover:opacity-90 transition-all focus:outline-none"
+    class="flex items-center justify-center p-2 rounded-xl bg-surface-hover hover:bg-surface-active text-primary transition-all duration-200 focus:outline-none"
   >
     <!-- Ícono de Pincel / Paleta -->
     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -16,14 +16,14 @@
     </svg>
   </button>
 
-  <!-- Opciones de Temas -->
+  <!-- Opciones de Temas: Fondo 100% sólido, SIN BORDES y sin herencia de transparencias -->
   <div 
     id="theme-menu"
-    class="absolute right-0 top-full mt-2 w-36 bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-xl shadow-2xl p-1.5 z-50 hidden flex-col gap-1"
+    class="absolute right-0 top-full mt-2.5 w-40 bg-[var(--bg-surface)] backdrop-blur-none text-primary rounded-2xl shadow-2xl p-2 z-50 hidden flex-col gap-1"
   >
     <button 
       data-theme-val="dark" 
-      class="theme-opt flex items-center gap-2 w-full px-3 py-2 text-xs font-medium text-[var(--text-primary)] hover:bg-[var(--bg-surface-hover)] rounded-lg transition-colors text-left"
+      class="theme-opt flex items-center gap-2.5 w-full px-3 py-2 text-xs font-medium text-secondary hover:text-primary hover:bg-surface-hover rounded-xl transition-colors text-left"
     >
       <span class="w-3 h-3 rounded-full bg-slate-900 border border-slate-700"></span>
       Oscuro
@@ -31,7 +31,7 @@
 
     <button 
       data-theme-val="light" 
-      class="theme-opt flex items-center gap-2 w-full px-3 py-2 text-xs font-medium text-[var(--text-primary)] hover:bg-[var(--bg-surface-hover)] rounded-lg transition-colors text-left"
+      class="theme-opt flex items-center gap-2.5 w-full px-3 py-2 text-xs font-medium text-secondary hover:text-primary hover:bg-surface-hover rounded-xl transition-colors text-left"
     >
       <span class="w-3 h-3 rounded-full bg-slate-100 border border-slate-300"></span>
       Claro
@@ -39,7 +39,7 @@
 
     <button 
       data-theme-val="emerald" 
-      class="theme-opt flex items-center gap-2 w-full px-3 py-2 text-xs font-medium text-[var(--text-primary)] hover:bg-[var(--bg-surface-hover)] rounded-lg transition-colors text-left"
+      class="theme-opt flex items-center gap-2.5 w-full px-3 py-2 text-xs font-medium text-secondary hover:text-primary hover:bg-surface-hover rounded-xl transition-colors text-left"
     >
       <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
       Esmeralda

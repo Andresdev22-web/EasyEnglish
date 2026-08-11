@@ -6,42 +6,42 @@ const topics = [
     category: "Básico",
     title: "Vocabulario Esencial y Gramática Inicial",
     description: "Aprende las palabras del día a día, saludos, verbos fundamentales (como To Be) y cómo estructurar tus primeras oraciones.",
-    badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+    badgeClass: "bg-emerald-500/15 text-emerald-400",
     icon: "🌱"
   },
   {
     category: "Básico",
     title: "Pronunciación y Escucha (Listening)",
     description: "Entrena tu oído con audios a velocidad nativa guiada y aprende la pronunciación fonética correcta de los sonidos difíciles.",
-    badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+    badgeClass: "bg-emerald-500/15 text-emerald-400",
     icon: "🎧"
   },
   {
     category: "Intermedio / Avanzado",
     title: "Tiempos Verbales Complejos",
     description: "Domina el Present Perfect, Past Continuous y los condicionales para expresar ideas complejas, hipótesis y experiencias.",
-    badgeColor: "bg-brand-primary/10 text-brand-primary border-brand-primary/20",
+    badgeClass: "bg-brand-primary/15 text-brand-primary",
     icon: "🚀"
   },
   {
     category: "Avanzado",
-    title: "Phrasal Verbs e Modismos (Idioms)",
+    title: "Phrasal Verbs y Modismos (Idioms)",
     description: "Habla como un hablante nativo incorporando expresiones cotidianas, modismos y verbos compuestos en tus conversaciones.",
-    badgeColor: "bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20",
+    badgeClass: "bg-brand-secondary/15 text-brand-secondary",
     icon: "🗣️"
   },
   {
     category: "Avanzado",
     title: "Inglés Profesional y Entrevistas",
     description: "Redacción de correos formales, vocabulario de negocios, presentaciones y preparación para entrevistas de trabajo en inglés.",
-    badgeColor: "bg-brand-secondary/10 text-brand-secondary border-brand-secondary/20",
+    badgeClass: "bg-brand-secondary/15 text-brand-secondary",
     icon: "💼"
   },
   {
     category: "Práctica Continua",
     title: "Lectura y Comprensión Real",
     description: "Lee artículos, cuentos adaptados y noticias en inglés con glosarios interactivos que traducen palabras desconocidas al instante.",
-    badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+    badgeClass: "bg-amber-500/15 text-amber-400",
     icon: "📚"
   }
 ];
@@ -62,18 +62,18 @@ const topics = [
     </p>
   </div>
 
-  <!-- Grid de Tarjetas (Usa la regla de CSS Grid de COMPONENT_GUIDELINES.md) -->
+  <!-- Grid de Tarjetas Sólidas, Sin Bordes y Flotantes -->
   <div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] auto-rows-[minmax(220px,auto)] gap-6">
     {topics.map((item) => (
-      <div class="group relative bg-surface border border-strong rounded-2xl p-6 flex flex-col justify-between hover:bg-surface-hover hover:border-brand-primary/40 transition-all duration-300 shadow-md">
+      <div class="group relative bg-surface rounded-2xl p-6 flex flex-col justify-between shadow-md hover:shadow-xl hover:-translate-y-1 hover:bg-surface-hover transition-all duration-300">
         
         <!-- Parte Superior: Icono + Categoria -->
         <div class="flex flex-col gap-4">
           <div class="flex items-center justify-between">
-            <span class="text-3xl p-2 rounded-xl bg-surface-hover border border-strong group-hover:scale-110 transition-transform duration-200">
+            <span class="text-2xl p-3 rounded-xl bg-surface-hover group-hover:bg-surface text-primary transition-colors duration-200">
               {item.icon}
             </span>
-            <span class={`text-xs font-semibold px-2.5 py-1 rounded-full border ${item.badgeColor}`}>
+            <span class={`text-xs font-semibold px-3 py-1 rounded-full ${item.badgeClass}`}>
               {item.category}
             </span>
           </div>
@@ -89,10 +89,10 @@ const topics = [
           </div>
         </div>
 
-        <!-- Indicador inferior estético -->
-        <div class="mt-6 pt-4 border-t border-subtle flex items-center justify-between text-xs text-muted">
+        <!-- Indicador inferior estético (sin border-t marcado) -->
+        <div class="mt-6 pt-4 border-t border-text-muted/10 flex items-center justify-between text-xs text-muted">
           <span>Módulo interactivo</span>
-          <span class="group-hover:translate-x-1 transition-transform duration-200 text-brand-primary font-medium">→</span>
+          <span class="group-hover:translate-x-1.5 transition-transform duration-200 text-brand-primary font-semibold text-sm">→</span>
         </div>
 
       </div>

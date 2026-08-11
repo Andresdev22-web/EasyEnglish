@@ -5,13 +5,21 @@ import ThemeSelector from "./ThemeSelector.astro";
 ---
 
 <div class="fixed top-4 left-0 w-full flex justify-center z-50 px-4">
+  <!-- 
+    Cambios aplicados:
+    1. Se eliminó la clase 'border border-strong'.
+    2. Se agregó una sombra personalizada de triple capa (shadow-[0_10px_38px_-10px_rgba(0,0,0,0.5),0_0_20px_0_rgba(0,0,0,0.2)]) 
+       que separa la barra del fondo de forma natural.
+    3. bg-surface/90 + backdrop-blur-2xl para mantener el efecto cristalino sin requerir líneas.
+  -->
   <div
-    class="bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-primary)] rounded-xl w-full max-w-5xl h-14 px-4 flex items-center justify-between shadow-lg backdrop-blur-md transition-colors duration-300"
+    class="bg-surface/90 backdrop-blur-2xl text-primary rounded-2xl w-full max-w-5xl h-14 px-5 flex items-center justify-between shadow-[0_12px_40px_-8px_rgba(0,0,0,0.6),0_0_15px_0_rgba(0,0,0,0.2)] transition-all duration-300"
   >
     <!-- Sección Izquierda: Logo + Nombre -->
-    <div class="flex items-center gap-3">
+    <a href="/" class="flex items-center gap-3.5 group">
+      <!-- Icono contenedor sin bordes marcados -->
       <div
-        class="w-9 h-9 rounded-lg overflow-hidden flex-shrink-0 bg-[var(--bg-surface-hover)] border border-[var(--border-color)]"
+        class="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0 bg-surface-hover group-hover:scale-105 transition-transform duration-300 shadow-sm"
       >
         <img
           src="/tests/imgTest.png"
@@ -19,14 +27,20 @@ import ThemeSelector from "./ThemeSelector.astro";
           class="w-full h-full object-cover object-center"
         />
       </div>
-      <span class="font-bold text-base tracking-wide text-[var(--text-primary)]">
-        Easy English
-      </span>
-    </div>
 
-    <!-- Sección Derecha: Opciones + Selector de Tema agrupados -->
-    <div class="flex items-center gap-2">
+      <!-- Nombre con color semántico -->
+      <span class="font-extrabold text-base tracking-tight text-primary group-hover:text-brand-primary transition-colors duration-200">
+        Easy <span class="text-brand-primary">English</span>
+      </span>
+    </a>
+
+    <!-- Sección Derecha: Opciones + Selector de Tema -->
+    <div class="flex items-center gap-3">
       <MenuDesplegableHeaderAstroComponent />
+      
+      <!-- Separador muy tenue usando opacidad baja en lugar de bordes rígidos -->
+      <span class="h-4 w-px bg-text-muted/20"></span>
+      
       <ThemeSelector />
     </div>
   </div>
