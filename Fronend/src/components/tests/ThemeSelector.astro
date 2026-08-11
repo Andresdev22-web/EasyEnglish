@@ -1,0 +1,88 @@
+---
+// src/components/ThemeSelector.astro
+---
+
+<div class="relative inline-block text-left" id="theme-selector-wrapper">
+  <!-- Botón selector de tema -->
+  <button 
+    id="theme-btn"
+    type="button"
+    title="Cambiar color de la web"
+    class="flex items-center justify-center p-2 rounded-lg bg-[var(--bg-surface-hover)] border border-[var(--border-color)] text-[var(--text-primary)] hover:opacity-90 transition-all focus:outline-none"
+  >
+    <!-- Ícono de Pincel / Paleta -->
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+    </svg>
+  </button>
+
+  <!-- Opciones de Temas -->
+  <div 
+    id="theme-menu"
+    class="absolute right-0 top-full mt-2 w-36 bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-xl shadow-2xl p-1.5 z-50 hidden flex-col gap-1"
+  >
+    <button 
+      data-theme-val="dark" 
+      class="theme-opt flex items-center gap-2 w-full px-3 py-2 text-xs font-medium text-[var(--text-primary)] hover:bg-[var(--bg-surface-hover)] rounded-lg transition-colors text-left"
+    >
+      <span class="w-3 h-3 rounded-full bg-slate-900 border border-slate-700"></span>
+      Oscuro
+    </button>
+
+    <button 
+      data-theme-val="light" 
+      class="theme-opt flex items-center gap-2 w-full px-3 py-2 text-xs font-medium text-[var(--text-primary)] hover:bg-[var(--bg-surface-hover)] rounded-lg transition-colors text-left"
+    >
+      <span class="w-3 h-3 rounded-full bg-slate-100 border border-slate-300"></span>
+      Claro
+    </button>
+
+    <button 
+      data-theme-val="emerald" 
+      class="theme-opt flex items-center gap-2 w-full px-3 py-2 text-xs font-medium text-[var(--text-primary)] hover:bg-[var(--bg-surface-hover)] rounded-lg transition-colors text-left"
+    >
+      <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+      Esmeralda
+    </button>
+  </div>
+</div>
+
+<script>
+  const themeBtn = document.getElementById('theme-btn');
+  const themeMenu = document.getElementById('theme-menu');
+  const themeWrapper = document.getElementById('theme-selector-wrapper');
+  const themeOpts = document.querySelectorAll('.theme-opt');
+
+  // Cargar tema guardado en localStorage o por defecto
+  const savedTheme = localStorage.getItem('site-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  // Abrir / Cerrar menú
+  themeBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    themeMenu?.classList.toggle('hidden');
+    themeMenu?.classList.toggle('flex');
+  });
+
+  // Cambiar tema al hacer clic en una opción
+  themeOpts.forEach((opt) => {
+    opt.addEventListener('click', () => {
+      const selectedTheme = opt.getAttribute('data-theme-val');
+      if (selectedTheme) {
+        document.documentElement.setAttribute('data-theme', selectedTheme);
+        localStorage.setItem('site-theme', selectedTheme);
+      }
+      themeMenu?.classList.add('hidden');
+      themeMenu?.classList.remove('flex');
+    });
+  });
+
+  // Cerrar al hacer clic fuera
+  document.addEventListener('click', (e) => {
+    const targetNode = e.target as Node;
+    if (themeWrapper && !themeWrapper.contains(targetNode)) {
+      themeMenu?.classList.add('hidden');
+      themeMenu?.classList.remove('flex');
+    }
+  });
+</script>

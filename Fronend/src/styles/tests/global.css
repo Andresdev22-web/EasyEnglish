@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------------------- */
+/* 1. MAPEO PARA TAILWIND CSS V4                                             */
+/* Permite usar clases como: bg-main, bg-surface, text-primary, border-strong */
+/* -------------------------------------------------------------------------- */
+@theme {
+  --color-bg-main: var(--bg-main);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-surface-hover: var(--bg-surface-hover);
+  --color-bg-surface-active: var(--bg-surface-active);
+
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-hover: var(--brand-primary-hover);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-secondary-hover: var(--brand-secondary-hover);
+
+  --color-status-success: var(--status-success);
+  --color-status-warning: var(--status-warning);
+  --color-status-error: var(--status-error);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. DEFINICIÓN DE TEMAS (VARIABLES CSS)                                     */
+/* -------------------------------------------------------------------------- */
+@layer base {
+  /* Tema por defecto: Oscuro (Dark) */
+  :root,
+  [data-theme="dark"] {
+    /* Fondos / Capas */
+    --bg-main: #0f172a;           /* Fondo principal de la página */
+    --bg-surface: #1e293b;        /* Contenedores, tarjetas, modales */
+    --bg-surface-hover: #334155;  /* Elementos interactivos en hover */
+    --bg-surface-active: #475569; /* Botones o elementos presionados */
+
+    /* Bordes */
+    --border-subtle: #1e293b;     /* Bordes suaves de separación */
+    --border-strong: #334155;     /* Bordes marcados, inputs y tarjetas */
+
+    /* Tipografía */
+    --text-primary: #f8fafc;      /* Títulos y texto principal */
+    --text-secondary: #94a3b8;    /* Subtítulos y descripciones */
+    --text-muted: #64748b;        /* Fechas, placeholders, notas de pie */
+
+    /* Marca y Acentos */
+    --brand-primary: #6366f1;         /* Botón principal, enlaces (Índigo) */
+    --brand-primary-hover: #4f46e5;
+    --brand-secondary: #06b6d4;       /* Botones secundarios, badges (Cian) */
+    --brand-secondary-hover: #0891b2;
+
+    /* Estados del sistema */
+    --status-success: #10b981;
+    --status-warning: #f59e0b;
+    --status-error: #ef4444;
+  }
+
+  /* Tema Claro (Light) */
+  [data-theme="light"] {
+    --bg-main: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-surface-hover: #f1f5f9;
+    --bg-surface-active: #e2e8f0;
+
+    --border-subtle: #f1f5f9;
+    --border-strong: #e2e8f0;
+
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+
+    --brand-primary: #4f46e5;
+    --brand-primary-hover: #4338ca;
+    --brand-secondary: #0891b2;
+    --brand-secondary-hover: #0e7490;
+
+    --status-success: #059669;
+    --status-warning: #d97706;
+    --status-error: #dc2626;
+  }
+
+  /* Tema Esmeralda (Emerald) */
+  [data-theme="emerald"] {
+    --bg-main: #022c22;
+    --bg-surface: #064e3b;
+    --bg-surface-hover: #047857;
+    --bg-surface-active: #065f46;
+
+    --border-subtle: #047857;
+    --border-strong: #065f46;
+
+    --text-primary: #ecfdf5;
+    --text-secondary: #a7f3d0;
+    --text-muted: #6ee7b7;
+
+    --brand-primary: #10b981;
+    --brand-primary-hover: #059669;
+    --brand-secondary: #14b8a6;
+    --brand-secondary-hover: #0d9488;
+
+    --status-success: #34d399;
+    --status-warning: #fbbf24;
+    --status-error: #f87171;
+  }
+
+  /* ----------------------------------------------------------------------- */
+  /* 3. ESTILOS BASE GLOBAL (Solución al fondo blanco)                       */
+  /* ----------------------------------------------------------------------- */
+  html {
+    color-scheme: dark light;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Espacio superior de seguridad para que la barra flotante no tape el inicio del contenido */
+    padding-top: 5rem;
+  }
+}
