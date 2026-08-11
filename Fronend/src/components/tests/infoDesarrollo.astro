@@ -1,0 +1,73 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<!-- Widget Flotante de Estado en Desarrollo (Abajo a la Derecha) -->
+<aside 
+  id="dev-toast" 
+  class="fixed bottom-4 right-4 z-[999] w-[calc(100%-2rem)] sm:w-96 transition-all duration-300 ease-out"
+  aria-label="Aviso de sitio en desarrollo"
+>
+  <!-- Fondo 100% Sólido sin variables con opacidad: bg-white en claro y bg-slate-900 en oscuro -->
+  <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5),0_2px_8px_0_rgba(0,0,0,0.2)] dark:shadow-[0_15px_45px_-10px_rgba(0,0,0,0.7),0_4px_12px_0_rgba(0,0,0,0.4)] flex flex-col gap-3 transition-colors duration-300">
+    
+    <!-- Encabezado con Badges e Ícono de Cierre -->
+    <div class="flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-600 dark:text-amber-400">
+          <Icon name="lucide:construction" class="w-3.5 h-3.5" />
+          En Desarrollo
+        </span>
+      </div>
+
+      <!-- Botón de Cierre -->
+      <button 
+        id="close-dev-toast" 
+        type="button"
+        class="p-1.5 rounded-xl text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-200 cursor-pointer" 
+        aria-label="Cerrar aviso"
+      >
+        <Icon name="lucide:x" class="w-4 h-4" />
+      </button>
+    </div>
+
+    <!-- Contenido del Mensaje -->
+    <div class="flex items-start gap-3">
+      <div class="p-2.5 rounded-xl bg-brand-primary/10 text-brand-primary shrink-0">
+        <Icon name="lucide:code-2" class="w-5 h-5" />
+      </div>
+      
+      <div class="flex flex-col gap-1">
+        <h3 class="text-sm font-bold text-slate-900 dark:text-slate-50 leading-tight">
+          Sitio bajo construcción
+        </h3>
+        <p class="text-xs text-slate-600 dark:text-slate-400 font-normal leading-relaxed">
+          Estamos afinando los últimos detalles. Algunas funciones o vistas podrían cambiar pronto.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</aside>
+
+<script>
+  // Script embebido para hacer interactivo el cierre en Astro
+  const initDevToast = () => {
+    const toast = document.getElementById('dev-toast');
+    const closeBtn = document.getElementById('close-dev-toast');
+
+    if (toast && closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        // Animación de salida (desvanecer y bajar)
+        toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+        setTimeout(() => {
+          toast.remove();
+        }, 300);
+      });
+    }
+  };
+
+  // Ejecuta en la carga inicial y soporta las transiciones de página de Astro (View Transitions)
+  initDevToast();
+  document.addEventListener('astro:after-swap', initDevToast);
+</script>

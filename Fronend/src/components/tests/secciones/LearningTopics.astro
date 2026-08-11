@@ -1,5 +1,6 @@
 ---
 // src/components/LearningTopics.astro
+import { Icon } from 'astro-icon/components';
 
 const topics = [
   {
@@ -7,42 +8,42 @@ const topics = [
     title: "Vocabulario Esencial y Gramática Inicial",
     description: "Aprende las palabras del día a día, saludos, verbos fundamentales (como To Be) y cómo estructurar tus primeras oraciones.",
     badgeClass: "bg-emerald-500/15 text-emerald-400",
-    icon: "🌱"
+    iconName: "lucide:sprout"
   },
   {
     category: "Básico",
     title: "Pronunciación y Escucha (Listening)",
     description: "Entrena tu oído con audios a velocidad nativa guiada y aprende la pronunciación fonética correcta de los sonidos difíciles.",
     badgeClass: "bg-emerald-500/15 text-emerald-400",
-    icon: "🎧"
+    iconName: "lucide:headphones"
   },
   {
     category: "Intermedio / Avanzado",
     title: "Tiempos Verbales Complejos",
     description: "Domina el Present Perfect, Past Continuous y los condicionales para expresar ideas complejas, hipótesis y experiencias.",
     badgeClass: "bg-brand-primary/15 text-brand-primary",
-    icon: "🚀"
+    iconName: "lucide:rocket"
   },
   {
     category: "Avanzado",
     title: "Phrasal Verbs y Modismos (Idioms)",
     description: "Habla como un hablante nativo incorporando expresiones cotidianas, modismos y verbos compuestos en tus conversaciones.",
     badgeClass: "bg-brand-secondary/15 text-brand-secondary",
-    icon: "🗣️"
+    iconName: "lucide:messages-square"
   },
   {
     category: "Avanzado",
     title: "Inglés Profesional y Entrevistas",
     description: "Redacción de correos formales, vocabulario de negocios, presentaciones y preparación para entrevistas de trabajo en inglés.",
     badgeClass: "bg-brand-secondary/15 text-brand-secondary",
-    icon: "💼"
+    iconName: "lucide:briefcase"
   },
   {
     category: "Práctica Continua",
     title: "Lectura y Comprensión Real",
     description: "Lee artículos, cuentos adaptados y noticias en inglés con glosarios interactivos que traducen palabras desconocidas al instante.",
     badgeClass: "bg-amber-500/15 text-amber-400",
-    icon: "📚"
+    iconName: "lucide:book-open"
   }
 ];
 ---
@@ -62,17 +63,20 @@ const topics = [
     </p>
   </div>
 
-  <!-- Grid de Tarjetas Sólidas, Sin Bordes y Flotantes -->
+  <!-- Grid de Tarjetas con Sombra Definida -->
   <div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] auto-rows-[minmax(220px,auto)] gap-6">
     {topics.map((item) => (
-      <div class="group relative bg-surface rounded-2xl p-6 flex flex-col justify-between shadow-md hover:shadow-xl hover:-translate-y-1 hover:bg-surface-hover transition-all duration-300">
+      <div class="group relative bg-surface rounded-2xl p-6 flex flex-col justify-between 
+                  shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5),0_2px_8px_0_rgba(0,0,0,0.2)] 
+                  hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7),0_4px_12px_0_rgba(0,0,0,0.3)] 
+                  hover:-translate-y-1.5 transition-all duration-300">
         
         <!-- Parte Superior: Icono + Categoria -->
         <div class="flex flex-col gap-4">
           <div class="flex items-center justify-between">
-            <span class="text-2xl p-3 rounded-xl bg-surface-hover group-hover:bg-surface text-primary transition-colors duration-200">
-              {item.icon}
-            </span>
+            <div class="p-3 rounded-xl bg-surface-hover text-brand-primary flex items-center justify-center transition-colors duration-200">
+              <Icon name={item.iconName} class="w-6 h-6" />
+            </div>
             <span class={`text-xs font-semibold px-3 py-1 rounded-full ${item.badgeClass}`}>
               {item.category}
             </span>
@@ -89,10 +93,10 @@ const topics = [
           </div>
         </div>
 
-        <!-- Indicador inferior estético (sin border-t marcado) -->
+        <!-- Indicador inferior estético -->
         <div class="mt-6 pt-4 border-t border-text-muted/10 flex items-center justify-between text-xs text-muted">
           <span>Módulo interactivo</span>
-          <span class="group-hover:translate-x-1.5 transition-transform duration-200 text-brand-primary font-semibold text-sm">→</span>
+          <Icon name="lucide:arrow-right" class="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-200 text-brand-primary font-semibold" />
         </div>
 
       </div>
