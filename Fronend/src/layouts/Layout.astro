@@ -1,0 +1,36 @@
+---
+// importar estilos de tailwindcss
+import '../styles/global.css';
+// src/components/LearningTopics.astro
+import { Icon } from 'astro-icon/components';
+
+// impotar componetes
+import Header from '../components/vrs/v1/Header.astro';
+
+// resivir las props enviadas al layout
+interface Props {
+    titlePage?: string
+}
+
+const {
+    titlePage = "sin titulo"
+} = Astro.props
+
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{titlePage}</title>
+</head>
+<body>
+
+    <!-- Barra superior de la pagina web q siempre estara visible -->
+    <Header></Header>    
+    <main>
+        <slot></slot>
+    </main>
+    
+</body>
+</html>

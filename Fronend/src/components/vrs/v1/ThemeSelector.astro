@@ -1,0 +1,87 @@
+---
+// src/components/vrs/v1/ThemeSelector.astro
+import { Icon } from 'astro-icon/components';
+---
+
+<div class="relative inline-block text-left" id="theme-selector-wrapper">
+  <!-- Botón selector de tema -->
+  <button 
+    id="theme-btn"
+    type="button"
+    title="Cambiar color de la web"
+    class="flex items-center justify-center p-2 rounded-xl bg-surface-hover hover:bg-surface-active text-primary transition-all duration-200 focus:outline-none shadow-[0_4px_12px_-2px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_16px_-2px_rgba(0,0,0,0.2)]"
+  >
+    <!-- Ícono de Paleta de Lucide -->
+    <Icon name="lucide:palette" class="w-5 h-5 text-brand-primary" />
+  </button>
+
+  <!-- Opciones de Temas: Fondo 100% sólido, SIN BORDES y con sombras compuestas -->
+  <div 
+    id="theme-menu"
+    class="absolute right-0 top-full mt-2.5 w-40 bg-[var(--bg-surface)] backdrop-blur-none text-primary rounded-2xl shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5),0_2px_8px_0_rgba(0,0,0,0.2)] p-2 z-50 hidden flex-col gap-1"
+  >
+    <button 
+      data-theme-val="dark" 
+      class="theme-opt flex items-center gap-2.5 w-full px-3 py-2 text-xs font-medium text-secondary hover:text-primary hover:bg-surface-hover rounded-xl transition-colors text-left"
+    >
+      <Icon name="lucide:moon" class="w-4 h-4 text-slate-400" />
+      Oscuro
+    </button>
+
+    <button 
+      data-theme-val="light" 
+      class="theme-opt flex items-center gap-2.5 w-full px-3 py-2 text-xs font-medium text-secondary hover:text-primary hover:bg-surface-hover rounded-xl transition-colors text-left"
+    >
+      <Icon name="lucide:sun" class="w-4 h-4 text-amber-400" />
+      Claro
+    </button>
+
+    <button 
+      data-theme-val="emerald" 
+      class="theme-opt flex items-center gap-2.5 w-full px-3 py-2 text-xs font-medium text-secondary hover:text-primary hover:bg-surface-hover rounded-xl transition-colors text-left"
+    >
+      <Icon name="lucide:gem" class="w-4 h-4 text-emerald-400" />
+      Esmeralda
+    </button>
+  </div>
+</div>
+
+<script>
+  const themeBtn = document.getElementById('theme-btn');
+  const themeMenu = document.getElementById('theme-menu');
+  const themeWrapper = document.getElementById('theme-selector-wrapper');
+  const themeOpts = document.querySelectorAll('.theme-opt');
+
+  // Cargar tema guardado en localStorage o por defecto
+  const savedTheme = localStorage.getItem('site-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  // Abrir / Cerrar menú
+  themeBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    themeMenu?.classList.toggle('hidden');
+    themeMenu?.classList.toggle('flex');
+  });
+
+  // Cambiar tema al hacer clic en una opción
+  themeOpts.forEach((opt) => {
+    opt.addEventListener('click', () => {
+      const selectedTheme = opt.getAttribute('data-theme-val');
+      if (selectedTheme) {
+        document.documentElement.setAttribute('data-theme', selectedTheme);
+        localStorage.setItem('site-theme', selectedTheme);
+      }
+      themeMenu?.classList.add('hidden');
+      themeMenu?.classList.remove('flex');
+    });
+  });
+
+  // Cerrar al hacer clic fuera
+  document.addEventListener('click', (e) => {
+    const targetNode = e.target as Node;
+    if (themeWrapper && !themeWrapper.contains(targetNode)) {
+      themeMenu?.classList.add('hidden');
+      themeMenu?.classList.remove('flex');
+    }
+  });
+</script>

@@ -127,3 +127,36 @@
     padding-top: 5rem;
   }
 }
+
+
+
+
+
+
+
+
+
+
+/* componentes */
+
+
+@layer components {
+  /* Clase base con los estilos y sombras exactos de tu último componente */
+  .card-glass {
+    @apply bg-surface rounded-2xl 
+           shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5),0_2px_8px_0_rgba(0,0,0,0.2)] 
+           transition-all duration-300;
+  }
+
+  /* Variante interactiva con el efecto hover de elevación y sombra profunda */
+  .card-glass-hover {
+    @apply card-glass 
+           hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7),0_4px_12px_0_rgba(0,0,0,0.3)] 
+           hover:-translate-y-1.5;
+  }
+
+  /* Separador inferior sutil para dentro de las tarjetas */
+  .card-divider {
+    @apply border-t border-text-muted/10;
+  }
+}
